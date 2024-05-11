@@ -29,8 +29,8 @@ body {
 /* Header styles */
 .header {
     display: flex;
-    padding-top:15px ;
-    padding-bottom:15px ;
+    padding-top: 15px;
+    padding-bottom: 15px;
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid #abb2bf;
@@ -70,7 +70,7 @@ body {
     justify-content: center;
     height: 60vh;
     width: 90vw;
-    gap: 1px;
+    gap: 5px;
 
 }
 
@@ -86,29 +86,33 @@ body {
 
 }
 
-.bar{
+.bar {
     background-color: azure;
-    width: 5px;
+    width: 10px;
     border-radius: 5px;
 }
 
-.bar-highlight{
-   
+.bar-highlight {
+
     background-color: orangered;
     width: 20px;
     border-radius: 5px;
- 
+
 }
-.compared{
+
+.compared {
     background-color: aqua;
 
 }
 
-.btn{
+.btn {
     padding: 10px 15px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 500;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }

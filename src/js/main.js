@@ -1,11 +1,14 @@
 // make the page load before anything else
 document.addEventListener('DOMContentLoaded', function () {
 
+
     // variable declaration
-    let bars = 500;
+    let bars, speed;
     let array = [];
     var interval = 0;
     var i = 1;
+
+
     // Create elements
     const main = document.createElement('div');
     main.classList.add('main');
@@ -13,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const footer = document.createElement('footer');
     footer.classList.add('footer');
     footer.innerHTML = `<img src="../../assets/logoLight.png" height="40" width="40" alt="logo"/>
-    <h4>&copy;Peliah</h4>`
+    <a href="https://pelayah-portfolio.vercel.app" target="_blank" style="text-decoration:none; color:inherit"><h4>&copy;Peliah</h4></a>`
 
     const header = document.createElement('header');
     header.classList.add('header');
@@ -44,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
     quickBtn.classList.add('btn');
     quickBtn.innerText = "Quick sort"
 
+    const refreshBtn = document.createElement('button');
+    refreshBtn.classList.add('btn');
+    refreshBtn.innerHTML = `<img src="../../assets/refresh.png" height="35" width="35" alt="logo" />`
+
     // Append elements to the main container
     const container = document.querySelector('.container');
     container.appendChild(header);
@@ -55,14 +62,36 @@ document.addEventListener('DOMContentLoaded', function () {
     button_container.appendChild(insertionBtn);
     button_container.appendChild(quickBtn);
     button_container.appendChild(mergeBtn);
+    button_container.appendChild(refreshBtn);
+
+
+    const btn = document.querySelectorAll('btn');
+    if (window.innerWidth <= 700) {
+        bars = 50;
+        speed = 300;
+
+        header.style.fontSize = '1.5rem';
+        button_container.style.gap = '10px'
+        const buttons = document.querySelectorAll('.btn');
+
+        for (const btn of buttons) {
+            btn.style.padding = '3px 5px';
+            btn.style.fontSize = '.9rem';
+            btn.style.borderRadius = '5px';
+
+        }
+    } else {
+        bars = 70,
+            speed = 100;
+    }
 
     // generate a random array with a size
     const generateRandomArray = () => {
         clearInterval(interval);
-        i=1;
+        i = 1;
         array = []
         for (let index = 0; index < bars; index++) {
-            array.push(Math.floor(Math.random() * 500) + 1);
+            array.push(Math.floor(Math.random() * 50) + 1);
             displayBars(array)
         }
         console.log(array);
@@ -75,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const bar = document.createElement('div');
             bar.classList.add('bar');
             bar.id = i;
-            bar.style.height = array[i] + `px`
+            bar.style.height = array[i] + `vh`
             bar.style.transition = 'height 0.5s ease-in-out';
             bar_container.appendChild(bar);
         }
@@ -83,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //create the buttons
     //insertion sort
-    
+
     function insertionSort(arr) {
         console.log(arr);
         // displayBars(arr)
@@ -128,6 +157,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     generateArrayBtn.addEventListener("click", generateRandomArray);
-    insertionBtn.addEventListener("click", () => interval = setInterval(() => insertionSort(array), 100));
+    insertionBtn.addEventListener("click", () => interval = setInterval(() => insertionSort(array), speed));
     displayBars(array)
+    console.log(window.innerWidth);
+    refreshBtn.addEventListener('click', () => {
+        window.location.reload();
+    });
 });
