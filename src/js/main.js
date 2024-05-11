@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         bars = 70,
             speed = 100;
+        button_container.style.width = '70vw'
     }
 
     // generate a random array with a size
