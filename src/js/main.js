@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
     button_container.appendChild(refreshBtn);
 
 
-    const btn = document.querySelectorAll('btn');
     if (window.innerWidth <= 700) {
         bars = 50;
         speed = 300;
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         i = 1;
         array = []
         for (let index = 0; index < bars; index++) {
-            array.push(Math.floor(Math.random() * 50) + 1);
+            array.push(Math.floor(Math.random() * 55) + 1);
             displayBars(array)
         }
         console.log(array);
@@ -155,6 +154,63 @@ document.addEventListener('DOMContentLoaded', function () {
     // merge sort
 
     // quick sort
+    // function partition(arr, low, high) {
+    //     let pivot = arr[high];
+
+    //     let i = low - 1;
+
+    //     for (let j = low; j <= high - 1; j++) {
+    //         // If current element is smaller than the pivot
+    //         if (arr[j] < pivot) {
+    //             // Increment index of smaller element
+    //             i++;
+    //             [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+    //         }
+    //     }
+    // }
+
+    function partition(arr, low, high) {
+        let pivot = arr[high];
+        let i = low - 1;
+        let j = low;
+
+        let interval = setInterval(() => {
+            if (j <= high - 1) {
+                if (arr[j] < pivot) {
+                    i++;
+                    [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+                    displayBars(arr); // Display bars after each swap
+                }
+                j++;
+            } else {
+                clearInterval(interval);
+                i++;
+                [arr[i], arr[high]] = [arr[high], arr[i]]; // Swap pivot to its correct position
+                displayBars(arr); // Display bars after pivot swap
+                // Call quickSort recursively for the left and right partitions
+                quickSort(arr, low, i - 1);
+                quickSort(arr, i + 1, high);
+            }
+        }, 200);
+
+        return i;
+    }
+
+    function quickSort(arr, low, high) {
+        if (low < high) {
+
+            // pi is partitioning index, arr[p]
+            // is now at right place
+            pi = partition(arr, low, high);
+
+            // Separately sort elements before
+            // partition and after partition
+            // quickSort(arr, low, pi - 1);
+            // quickSort(arr, pi + 1, high);
+            displayBars(arr)
+            console.log(arr);
+        }
+    }
 
 
     generateArrayBtn.addEventListener("click", generateRandomArray);
@@ -164,4 +220,5 @@ document.addEventListener('DOMContentLoaded', function () {
     refreshBtn.addEventListener('click', () => {
         window.location.reload();
     });
+    quickBtn.addEventListener("click", () => quickSort(array, 0, bars - 1))
 });
