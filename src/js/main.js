@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var interval = 0;
     var i = 1;
 
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
 
     // Create elements
     const main = document.createElement('div');
@@ -213,6 +215,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    // merge sort
+
+
 
     generateArrayBtn.addEventListener("click", generateRandomArray);
     insertionBtn.addEventListener("click", () => interval = setInterval(() => insertionSort(array), speed));
@@ -221,5 +226,6 @@ document.addEventListener('DOMContentLoaded', function () {
     refreshBtn.addEventListener('click', () => {
         window.location.reload();
     });
-    quickBtn.addEventListener("click", () => quickSort(array, 0, bars - 1))
+    quickBtn.addEventListener("click", () => quickSort(array, 0, bars - 1));
+    // mergeBtn.addEventListener("click", () => mergeSort(array, 0, bars - 1));
 });
